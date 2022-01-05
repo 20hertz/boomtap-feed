@@ -1,0 +1,34 @@
+//GENERAL
+$gutter: 20px;
+
+//FONTS
+$fontPrimary: "Open Sans", sans-serif;
+$fontSecondary: "Exo", sans-serif;
+$fontBaseSize: 16px;
+$fontBaseLineHeight: 1.625;
+
+//COLORS
+$clrBlack: #000000;
+$clrWhite: #ffffff;
+
+$clrPrimary: #F7D445;
+$clrSecondary: #B078C2;
+$clrThird: #F3AEBE;
+$clrGray: #cfd2d3;
+$clrDark: #050026;
+$clrBody: #ffffff;
+$bgBody: #ffffff;
+
+//HEADING SIZING
+$fontHeading1: 5rem;
+$fontHeading2: $fontHeading1 - ($fontHeading1 * 20 / 100);
+$fontHeading3: $fontHeading2 - ($fontHeading2 * 20 / 100);
+$fontHeading4: $fontHeading3 - ($fontHeading3 * 20 / 100);
+$fontHeading5: $fontHeading4 - ($fontHeading4 * 25 / 100);
+$fontHeading6: $fontHeading5 - ($fontHeading5 * 25 / 100);
+
+//MEDIA QUERIES
+$smallScreenWidth: 500px;
+$mediumScreenWidth: 768px;
+$largeScreenWidth: 1024px;
+$extraLargeScreenWidth: 1280px;

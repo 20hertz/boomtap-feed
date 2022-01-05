@@ -1,0 +1,425 @@
+/*************************************************************
+ Author     : Vivid Motion @ http://vividmotion.co/
+ *************************************************************/
+
+body {
+  background: $bgBody;
+  color: $clrBody;
+}
+
+html, body {
+  height: 100%;
+  background: $clrDark;
+  font-family: $fontPrimary;
+  font-size: $fontBaseSize;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+}
+
+h1 {
+  font-size: $fontHeading1;
+}
+
+h2 {
+  font-size: $fontHeading2;
+}
+
+h3 {
+  font-size: $fontHeading3;
+}
+
+h4 {
+  font-size: $fontHeading4;
+}
+
+h5 {
+  font-size: $fontHeading5;
+}
+
+h6 {
+  font-size: $fontHeading6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: $fontSecondary;
+  font-weight: 700;
+}
+
+p {
+  line-height: $fontBaseLineHeight;
+
+  margin-bottom: 0;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: 0;
+  text-decoration: none;
+}
+
+/*** Buttons Start ***/
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0.5rem 1.25rem;
+  line-height: calc(48px - 1rem - 2px);
+  height: 3rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  transition-property: background-color, color, border-color;
+  transition-duration: .15s;
+  transition-timing-function: ease;
+  @include mediumScreens {
+    padding: 0.5rem 2rem;
+    line-height: calc(60px - 1rem - 2px);
+    height: 60px;
+  }
+  & + & {
+    margin-left: 4px;
+  }
+  &-arrow {
+    position: relative;
+    padding: 0.5rem 1.25rem;
+    justify-content: space-between;
+  }
+  &-arrow > svg {
+    margin-left: 1rem;
+  }
+  &-arrow > svg path {
+    stroke: currentColor;
+  }
+  &-flex {
+    display: flex;
+    width: 100%;
+    padding: 0.5rem 1.25rem;
+  }
+  &-block {
+    width: 100%;
+  }
+  &-black,
+  &-black:focus {
+    background-color: $clrBlack;
+    border-color: $clrBlack;
+    color: white;
+  }
+  &-black:hover,
+  &-black:active:focus {
+    background-color: $clrBlack;
+    color: white;
+  }
+  &-primary,
+  &-primary:focus {
+    background-color: $clrPrimary;
+    border-color: $clrPrimary;
+    color: white;
+  }
+  &-primary:hover,
+  &-primary:active:focus {
+    background-color: $clrPrimary;
+    color: white;
+  }
+  &-outline-primary,
+  &-outline-primary:focus {
+    background-color: transparent;
+    border-color: $clrPrimary;
+    color: $clrPrimary;
+  }
+  &-outline-primary:hover,
+  &-outline-primary:active:focus {
+    background-color: $clrPrimary;
+    border-color: $clrPrimary;
+    color: white;
+  }
+}
+
+/*** Buttons End ***/
+
+/*** Misc Start ***/
+
+.container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 $gutter;
+}
+
+input:focus,
+button:focus,
+textarea:focus,
+select:focus,
+a:focus {
+  outline: 0;
+}
+
+/*** Misc End ***/
+
+/*** Header Start ***/
+
+header {
+  position: absolute;
+  z-index: 2019;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.navbar,
+.navbar-expand-md {
+  min-height: 80px;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  @include mediumScreens {
+    min-height: 120px;
+  }
+  .container {
+    justify-content: center;
+  }
+}
+
+.navbar-nav {
+  @include mediumScreens {
+    flex-direction: row;
+    align-items: center;
+  }
+  .nav-item > .nav-link {
+    display: inline-block;
+    color: $clrBody;
+    font-family: $fontSecondary;
+    font-size: 32px;
+    line-height: 32px;
+    text-transform: uppercase;
+  }
+  .nav-item > .nav-link:hover {
+    background-color: transparent;
+  }
+  .nav-item > .nav-link:focus {
+    background-color: transparent;
+  }
+}
+
+.navbar-brand {
+  width: auto;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  color: $clrPrimary;
+  img,
+  svg {
+    display: block;
+    width: auto;
+    height: 100%;
+  }
+  svg path {
+    fill: currentColor;
+  }
+}
+
+.navbar-menu {
+  display: none;
+  @include mediumScreens {
+    display: block;
+  }
+}
+
+/*** Header End ***/
+
+/*** Main Start ***/
+
+#page-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#s-hero-home {
+  min-height: 100vh;
+  padding: 100px 0;
+  @include mediumScreens {
+    padding: 160px 0;
+  }
+}
+
+.presented-by {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 18px;
+}
+
+.s-slide {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  @include mediumScreens {
+    flex-flow: row wrap;
+  }
+  @include largeScreens {
+    gap: 60px;
+  }
+}
+
+.s-content {
+  max-width: 460px;
+  flex: 1;
+  text-align: center;
+  @include mediumScreens {
+    max-width: none;
+    text-align: left;
+  }
+
+  h1 {
+    margin-bottom: 32px;
+    font-size: 40px;
+    line-height: 1.2;
+    @include mediumScreens {
+      font-size: 48px;
+    }
+    @include largeScreens {
+      font-size: 70px;
+    }
+  }
+
+  h1 span {
+    @include addTextGradient($fallback-color: $clrThird, $gradient-value: linear-gradient(to right, $clrSecondary, $clrThird));
+  }
+
+  p {
+    margin-bottom: 48px;
+    font-size: 16px;
+    line-height: 1.5;
+    @include mediumScreens {
+      font-size: 18px;
+    }
+    @include largeScreens {
+      font-size: 20px;
+    }
+  }
+}
+
+.s-media {
+  flex: 1 0;
+  width: 100%;
+  max-width: 320px;
+  order: -1;
+  @include mediumScreens {
+    order: 1;
+    min-width: 400px;
+  }
+  @include largeScreens {
+    min-width: 480px;
+    max-width: 600px;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.s-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.form-subscribe {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+  border: 5px solid $clrWhite;
+  border-radius: 60px;
+
+  input {
+    height: 56px;
+    flex: 1;
+    padding: 8px 24px;
+    background: transparent;
+    color: $clrWhite;
+    border: 0;
+    @include mediumScreens {
+      height: 64px;
+      font-size: 18px;
+    }
+  }
+
+  input::placeholder {
+    color: rgba($clrWhite, 0.6);
+  }
+
+  input:focus::placeholder {
+    color: rgba($clrWhite, 0.4);
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: $clrPrimary;
+    color: $clrDark;
+    border: 0;
+    border-radius: 50%;
+    transition: background-color .2s ease, color .2s ease;
+    @include mediumScreens {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  button:hover {
+    background: $clrThird;
+  }
+}
+
+/*** Main End ***/
+
+/*** Footer Start ***/
+
+footer {
+  position: relative;
+}
+
+/*** Footer End ***/

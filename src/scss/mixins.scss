@@ -1,0 +1,153 @@
+//MIXINS//
+
+@mixin flexBasisCol($col) {
+  flex: 0 0 calc(100% / #{$col});
+  max-width: calc(100% / #{$col});
+}
+
+@mixin flexBasisPerc($percentage) {
+  flex: 0 0 $percentage;
+  max-width: $percentage;
+}
+
+@mixin flexBasisCol($col) {
+  flex: 0 0 calc(100% / #{$col});
+}
+
+@mixin svgBackground($desiredWidth, $originalWidth, $originalHeight) {
+  width: $desiredWidth;
+  height: calc(#{$desiredWidth} * #{$originalHeight} / #{$originalWidth});
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: $desiredWidth calc(#{$desiredWidth} * #{$originalHeight} / #{$originalWidth});
+}
+
+@mixin adjustedHeight($desiredWidth, $originalWidth, $originalHeight) {
+  height: calc(#{$desiredWidth} * #{$originalHeight} / #{$originalWidth});
+}
+
+@mixin adjustedWidth($desiredHeight, $originalHeight, $originalHeight) {
+  width: calc(#{$desiredHeight} * #{$originalHeight} / #{$originalHeight});
+}
+
+@mixin boxedContainer($width) {
+  max-width: $width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluidType($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+@mixin addTextGradient($fallback-color, $gradient-value) {
+  // adding fallback color
+  color: $fallback-color;
+
+  // if properties doesn't support - ignore them
+  @supports (-webkit-background-clip: text) and (-webkit-text-fill-color: transparent) {
+    //add background gradient
+    background-image: $gradient-value;
+
+    // crop to text borders
+    -webkit-background-clip: text;
+
+    // add transparency for text, we can see background gradient
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Media queries (mobile first):
+
+@mixin customScreens($value) {
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+@mixin smallScreens() {
+  @media (min-width: $smallScreenWidth) {
+    @content;
+  }
+}
+
+@mixin mediumScreens() {
+  @media (min-width: $mediumScreenWidth) {
+    @content;
+  }
+}
+
+@mixin largeScreens() {
+  @media (min-width: $largeScreenWidth) {
+    @content;
+  }
+}
+
+@mixin extraLargeScreens() {
+  @media (min-width: $extraLargeScreenWidth) {
+    @content;
+  }
+}
+
+// The media queries below should only be used in very specific cases where you ONLY want to apply styles on certain screen sizes.
+// You should use the mobile first media queries above whenever possible.
+@mixin mediumScreensOnly() {
+  @media (min-width: $mediumScreenWidth) and (max-width: $largeScreenWidth - 1px) {
+    @content;
+  }
+}
+
+@mixin extraSmallScreensMax() {
+  @media (max-width: $smallScreenWidth - 1px) {
+    @content;
+  }
+}
+
+@mixin smallScreensMax() {
+  @media (max-width: $mediumScreenWidth - 1px) {
+    @content;
+  }
+}
+
+@mixin mediumScreensMax() {
+  @media (max-width: $largeScreenWidth - 1px) {
+    @content;
+  }
+}
+
+@mixin largeScreensMax() {
+  @media (max-width: $extraLargeScreenWidth - 1px) {
+    @content;
+  }
+}
+
+@mixin smallMediumScreens() {
+  @media (min-width: 920px) {
+    @content;
+  }
+}
+
+@mixin smallMediumScreensMax() {
+  @media (max-width: 919px) {
+    @content;
+  }
+}
