@@ -22,6 +22,13 @@ jobs:
           role-to-assume: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
           aws-region: ca-central-1
 
+      - name: Get hosted zone ID
+        id: hostedzone
+        run: echo "::set-output name=HOSTED_ZONE_ID::$(aws ssm get-parameter --name 'Hosted_Zone_ID' --region 'us-east-1')"
+
+      - name: Print hosted zone ID
+        run: echo "${{ steps.author.outputs.HOSTED_ZONE_ID }}"
+
       - name: Sync to S3
         run: |
           aws s3 sync ./dist s3://${{ secrets.STAGING_BUCKET }}
