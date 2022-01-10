@@ -25,7 +25,7 @@ jobs:
       - name: Get hosted zone ID
         id: hostedzone
         run: |
-          JSON=$(aws ssm get-parameter --name 'Hosted_Zone_ID' --region 'us-east-1')
+          JSON=$(aws ssm get-parameter --name 'Hosted_Zone_ID' --region 'us-east-1') | sed 's/ //g'
           echo "::set-output name=HOSTED_ZONE_ID::${JSON}"
 
       - name: Print hosted zone ID
