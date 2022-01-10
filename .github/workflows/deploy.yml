@@ -24,7 +24,7 @@ jobs:
 
       - name: Sync to S3
         run: |
-          aws s3 sync ./dist s3://${{ secrets.STAGING_S3 }}
+          aws s3 sync ./dist s3://${{ secrets.STAGING_BUCKET }}
 
       - name: Invalidate CloudFront distribution path
         run: |
