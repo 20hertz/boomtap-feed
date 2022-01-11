@@ -10,6 +10,7 @@ inputs:
 
 runs:
   using: "composite"
+  runs-on: ubuntu-latest
   steps:
     - uses: aws-actions/configure-aws-credentials@master
       with:
