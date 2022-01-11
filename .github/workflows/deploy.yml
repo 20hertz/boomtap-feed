@@ -21,12 +21,7 @@ jobs:
         with:
           roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
           bucketParamName: "LandingPageStack_Bucket"
-
-      # - name: Get host bucket name
-      #   id: bucket
-      #   run: |
-      #     BUCKET_NAME_JSON=$(echo $(aws ssm get-parameter --name 'LandingPageStack_Bucket' --region 'ca-central-1') | sed 's/ //g' )
-      #     echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"
+          distributionSsmParamName: "LandingPageStack_Distribution_ID"
 
       # - name: Get CloudFront distribution ID
       #   id: dist

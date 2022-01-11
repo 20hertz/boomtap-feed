@@ -4,7 +4,10 @@ inputs:
   roleArn:
     required: true
     type: string
-  bucketParamName:
+  bucketSsmParamName:
+    required: true
+    type: string
+  distributionSsmParamName:
     required: true
     type: string
 
@@ -18,7 +21,14 @@ runs:
 
     - name: Get host bucket name
       id: bucket
-      shell: bash
       run: |
-        BUCKET_NAME_JSON=$(echo $(aws ssm get-parameter --name ${{ inputs.bucketParamName }} --region 'ca-central-1') | sed 's/ //g' )
+        BUCKET_NAME_JSON=$(echo $(aws ssm get-parameter --name ${{ inputs.bucketSsmParamName }} --region 'ca-central-1') | sed 's/ //g' )
         echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"
+      shell: bash
+
+    - name: Get CloudFront distribution ID
+      id: dist
+      run: |
+        DIST_ID_JSON=$(echo $(aws ssm get-parameter --name ${{ inputs.distributionSsmParamName }} --region 'ca-central-1') | sed 's/ //g' )
+        echo "::set-output name=DIST_ID::${DIST_ID_JSON}"
+      shell: bash
