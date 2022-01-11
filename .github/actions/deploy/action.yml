@@ -10,7 +10,6 @@ inputs:
 
 runs:
   using: "composite"
-  runs-on: ubuntu-latest
   steps:
     - uses: aws-actions/configure-aws-credentials@master
       with:
@@ -19,6 +18,7 @@ runs:
 
     - name: Get host bucket name
       id: bucket
+      shell: bash
       run: |
         BUCKET_NAME_JSON=$(echo $(aws ssm get-parameter --name ${{ inputs.bucketParamName }} --region 'ca-central-1') | sed 's/ //g' )
         echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"
