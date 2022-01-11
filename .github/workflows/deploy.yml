@@ -27,11 +27,10 @@ jobs:
         run: |
           BUCKET_NAME_JSON=$(echo $(aws ssm get-parameter --name 'LandingPageStack_Bucket' --region 'ca-central-1') | sed 's/ //g' )
           echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"
-
-      - name: Set bucket name variable
         env:
           bucket_name: ${{fromJson(steps.hostedzone.outputs.BUCKET_NAME).parameter.value}}
 
+      # - name: Set bucket name variable
       - name: Sync to S3
         run: aws s3 sync ./dist s3://${{ env.bucket_name }}
         # run: aws s3 sync ./dist s3://${{ secrets.STAGING_BUCKET }}
