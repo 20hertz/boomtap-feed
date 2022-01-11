@@ -29,12 +29,12 @@ jobs:
           echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"
 
       - name: Set bucket name variable
-        run: echo "${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}" >> $BUCKET_NAME
+        run: echo ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}} >> $BUCKET_NAME
         # env:
         #   bucket_name: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
 
       - name: Print bucket name variable
-        run: echo $BUCKET_NAME
+        run: echo env.$BUCKET_NAME
 
       - name: Sync to S3
         run: aws s3 sync ./dist s3://${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
