@@ -38,7 +38,7 @@ jobs:
       - name: Sync to S3
         env:
           BUCKET_NAME: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
-        run: aws s3 sync ./dist s3://${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
+        run: aws s3 sync ./dist s3://${{env.BUCKET_NAME}}
         # run: aws s3 sync ./dist s3://${{ secrets.STAGING_BUCKET }}
 
       - name: Invalidate CloudFront distribution path
