@@ -29,14 +29,23 @@ jobs:
           echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"
 
       - name: Set bucket name variable
-        run: echo "${{fromJson(steps.hostedzone.outputs.BUCKET_NAME).parameter.value}}"
-        # env:
-        #   bucket_name: ${{fromJson(steps.hostedzone.outputs.BUCKET_NAME).parameter.value}}
+        run: echo "${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}"
+        env:
+          bucket_name: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
 
       - name: Sync to S3
-        # run: aws s3 sync ./dist s3://${{ env.bucket_name }}
-        run: aws s3 sync ./dist s3://${{ secrets.STAGING_BUCKET }}
+        run: aws s3 sync ./dist s3://${{ env.bucket_name }}
+        # run: aws s3 sync ./dist s3://${{ secrets.STAGING_BUCKET }}
 
       - name: Invalidate CloudFront distribution path
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.STAGING_CF_DIST_ID }} --paths '/*'
+
+      # - name: Get hosted zone ID
+      #   id: hostedzone
+      #   run: |
+      #     JSON=$(echo $(aws ssm get-parameter --name 'Hosted_Zone_ID' --region 'us-east-1') | sed 's/ //g' )
+      #     echo "::set-output name=HOSTED_ZONE_ID::${JSON}"
+
+      # - name: Print hosted zone ID
+      #   run: echo "${{fromJson(steps.hostedzone.outputs.HOSTED_ZONE_ID).parameter.value}}"
