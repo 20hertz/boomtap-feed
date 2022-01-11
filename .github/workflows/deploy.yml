@@ -28,19 +28,18 @@ jobs:
           BUCKET_NAME_JSON=$(echo $(aws ssm get-parameter --name 'LandingPageStack_Bucket' --region 'ca-central-1') | sed 's/ //g' )
           echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"
 
-      - name: Print bucket name variable
-        run: echo ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
-        # env:
-        #   bucket_name: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
+      - name: Get CloudFront distribution ID
+        id: dist
+        run: |
+          DIST_ID_JSON=$(echo $(aws ssm get-parameter --name 'LandingPageStack_Distribution_ID' --region 'ca-central-1') | sed 's/ //g' )
+          echo "::set-output name=DIST_ID::${DIST_ID_JSON}"
 
-      # - name: Print bucket name variable
-      #   run: echo env.$BUCKET_NAME
       - name: Sync to S3
         env:
           BUCKET_NAME: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
-        run: aws s3 sync ./dist s3://${{env.BUCKET_NAME}}
-        # run: aws s3 sync ./dist s3://${{ secrets.STAGING_BUCKET }}
+        run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }}
 
       - name: Invalidate CloudFront distribution path
-        run: |
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.STAGING_CF_DIST_ID }} --paths '/*'
+        env:
+          DIST_ID: ${{fromJson(steps.dist.outputs.DIST_ID).parameter.value}}
+        run: aws cloudfront create-invalidation --distribution-id ${{ env.DIST_ID }} --paths '/*'
