@@ -30,8 +30,8 @@ jobs:
 
       - name: Set bucket name variable
         run: echo "${{fromJson(steps.hostedzone.outputs.BUCKET_NAME).parameter.value}}"
-        env:
-          bucket_name: ${{fromJson(steps.hostedzone.outputs.BUCKET_NAME).parameter.value}}
+        # env:
+        #   bucket_name: ${{fromJson(steps.hostedzone.outputs.BUCKET_NAME).parameter.value}}
 
       - name: Sync to S3
         # run: aws s3 sync ./dist s3://${{ env.bucket_name }}
