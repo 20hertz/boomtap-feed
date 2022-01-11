@@ -22,20 +22,19 @@ jobs:
           role-to-assume: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
           aws-region: ca-central-1
 
-      - name: Get hosted zone ID
-        id: hostedzone
+      - name: Get host bucket name
+        id: bucket
         run: |
-          JSON=$(echo $(aws ssm get-parameter --name 'Hosted_Zone_ID' --region 'us-east-1') | sed 's/ //g' )
-          echo "::set-output name=HOSTED_ZONE_ID::${JSON}"
+          BUCKET_NAME_JSON=$(echo $(aws ssm get-parameter --name 'LandingPageStack_Bucket' --region 'ca-central-1') | sed 's/ //g' )
+          echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"
 
-      - name: Print hosted zone ID
-        run: echo "${{fromJson(steps.hostedzone.outputs.HOSTED_ZONE_ID).parameter.value}}"
-        # env:
-        #   json_var: ${{ steps.hostedzone.outputs.HOSTED_ZONE_ID }}
+      - name: Set bucket name variable
+        env:
+          bucket_name: ${{fromJson(steps.hostedzone.outputs.BUCKET_NAME).parameter.value}}
 
       - name: Sync to S3
-        run: |
-          aws s3 sync ./dist s3://${{ secrets.STAGING_BUCKET }}
+        run: aws s3 sync ./dist s3://${{ env.bucket_name }}
+        # run: aws s3 sync ./dist s3://${{ secrets.STAGING_BUCKET }}
 
       - name: Invalidate CloudFront distribution path
         run: |
