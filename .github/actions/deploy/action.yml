@@ -37,3 +37,10 @@ runs:
       env:
         BUCKET_NAME: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
       run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }}
+      shell: bash
+
+    - name: Invalidate CloudFront distribution path
+      env:
+        DIST_ID: ${{fromJson(steps.dist.outputs.DIST_ID).parameter.value}}
+      run: aws cloudfront create-invalidation --distribution-id ${{ env.DIST_ID }} --paths '/*'
+      shell: bash
