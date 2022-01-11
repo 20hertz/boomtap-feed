@@ -7,4 +7,5 @@ jobs:
     permissions:
       id-token: write
       contents: read
-    uses: 20hertz/boomtap-feed/.github/workflows/deploy.yml@main
+    steps:
+      - uses: 20hertz/boomtap-feed/.github/workflows/deploy.yml@main

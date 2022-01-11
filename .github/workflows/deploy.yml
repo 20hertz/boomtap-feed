@@ -22,24 +22,24 @@ jobs:
           role-to-assume: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
           aws-region: ca-central-1
 
-      - name: Get host bucket name
-        id: bucket
-        run: |
-          BUCKET_NAME_JSON=$(echo $(aws ssm get-parameter --name 'LandingPageStack_Bucket' --region 'ca-central-1') | sed 's/ //g' )
-          echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"
+      # - name: Get host bucket name
+      #   id: bucket
+      #   run: |
+      #     BUCKET_NAME_JSON=$(echo $(aws ssm get-parameter --name 'LandingPageStack_Bucket' --region 'ca-central-1') | sed 's/ //g' )
+      #     echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"
 
-      - name: Get CloudFront distribution ID
-        id: dist
-        run: |
-          DIST_ID_JSON=$(echo $(aws ssm get-parameter --name 'LandingPageStack_Distribution_ID' --region 'ca-central-1') | sed 's/ //g' )
-          echo "::set-output name=DIST_ID::${DIST_ID_JSON}"
+      # - name: Get CloudFront distribution ID
+      #   id: dist
+      #   run: |
+      #     DIST_ID_JSON=$(echo $(aws ssm get-parameter --name 'LandingPageStack_Distribution_ID' --region 'ca-central-1') | sed 's/ //g' )
+      #     echo "::set-output name=DIST_ID::${DIST_ID_JSON}"
 
-      - name: Sync to S3
-        env:
-          BUCKET_NAME: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
-        run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }}
+      # - name: Sync to S3
+      #   env:
+      #     BUCKET_NAME: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
+      #   run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }}
 
-      - name: Invalidate CloudFront distribution path
-        env:
-          DIST_ID: ${{fromJson(steps.dist.outputs.DIST_ID).parameter.value}}
-        run: aws cloudfront create-invalidation --distribution-id ${{ env.DIST_ID }} --paths '/*'
+      # - name: Invalidate CloudFront distribution path
+      #   env:
+      #     DIST_ID: ${{fromJson(steps.dist.outputs.DIST_ID).parameter.value}}
+      #   run: aws cloudfront create-invalidation --distribution-id ${{ env.DIST_ID }} --paths '/*'
