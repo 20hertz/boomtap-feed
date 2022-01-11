@@ -4,6 +4,9 @@ inputs:
   roleArn:
     required: true
     type: string
+  bucketParamName:
+    required: true
+    type: string
 
 runs:
   using: "composite"
@@ -12,3 +15,9 @@ runs:
       with:
         role-to-assume: ${{ inputs.roleArn }}
         aws-region: ca-central-1
+
+    - name: Get host bucket name
+      id: bucket
+      run: |
+        BUCKET_NAME_JSON=$(echo $(aws ssm get-parameter --name ${{ inputs.bucketParamName }} --region 'ca-central-1') | sed 's/ //g' )
+        echo "::set-output name=BUCKET_NAME::${BUCKET_NAME_JSON}"

@@ -20,12 +20,7 @@ jobs:
         uses: ./.github/actions/deploy
         with:
           roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
-
-      # - name: Configure AWS credentials from Staging account
-      #   uses: aws-actions/configure-aws-credentials@master
-      #   with:
-      #     role-to-assume: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
-      #     aws-region: ca-central-1
+          bucketParamName: "LandingPageStack_Bucket"
 
       # - name: Get host bucket name
       #   id: bucket
