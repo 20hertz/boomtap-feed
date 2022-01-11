@@ -4,4 +4,4 @@ on: workflow_dispatch
 
 jobs:
   deploy:
-    uses: ./.github/workflows/deploy.yml@main
+    uses: 20hertz/boomtap-feed/.github/workflows/deploy.yml@main
