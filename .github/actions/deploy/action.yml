@@ -32,3 +32,8 @@ runs:
         DIST_ID_JSON=$(echo $(aws ssm get-parameter --name ${{ inputs.distributionSsmParamName }} --region 'ca-central-1') | sed 's/ //g' )
         echo "::set-output name=DIST_ID::${DIST_ID_JSON}"
       shell: bash
+
+    - name: Sync to S3
+      env:
+        BUCKET_NAME: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
+      run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }}

@@ -23,12 +23,6 @@ jobs:
           bucketParamName: "LandingPageStack_Bucket"
           distributionSsmParamName: "LandingPageStack_Distribution_ID"
 
-      # - name: Get CloudFront distribution ID
-      #   id: dist
-      #   run: |
-      #     DIST_ID_JSON=$(echo $(aws ssm get-parameter --name 'LandingPageStack_Distribution_ID' --region 'ca-central-1') | sed 's/ //g' )
-      #     echo "::set-output name=DIST_ID::${DIST_ID_JSON}"
-
       # - name: Sync to S3
       #   env:
       #     BUCKET_NAME: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
