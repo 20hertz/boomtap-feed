@@ -1,4 +1,5 @@
 name: Deploy
+description: "Gets short-lived credentials from AWS, retrieves bucket name and distribution ID from SSM store, syncs built assets to S3 and invalidates CloudFront cache."
 
 inputs:
   roleArn:

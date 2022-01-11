@@ -2,7 +2,6 @@ name: Continuous deployment
 
 on: workflow_dispatch
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   deploy:
     # The type of runner that the job will run on
@@ -17,18 +16,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Configure AWS credentials from Staging account
-        uses: ./.github/actions/deploy
+        uses: 20hertz/static-site-actions@alpha
+        # uses: ./.github/actions/deploy
         with:
           roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
           bucketSsmParamName: "LandingPageStack_Bucket"
           distributionSsmParamName: "LandingPageStack_Distribution_ID"
-
-      # - name: Sync to S3
-      #   env:
-      #     BUCKET_NAME: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
-      #   run: aws s3 sync ./dist s3://${{ env.BUCKET_NAME }}
-
-      # - name: Invalidate CloudFront distribution path
-      #   env:
-      #     DIST_ID: ${{fromJson(steps.dist.outputs.DIST_ID).parameter.value}}
-      #   run: aws cloudfront create-invalidation --distribution-id ${{ env.DIST_ID }} --paths '/*'
