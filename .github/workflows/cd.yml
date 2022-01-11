@@ -4,4 +4,7 @@ on: workflow_dispatch
 
 jobs:
   deploy:
+    permissions:
+      id-token: write
+      contents: read
     uses: 20hertz/boomtap-feed/.github/workflows/deploy.yml@main
