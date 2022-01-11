@@ -20,7 +20,7 @@ jobs:
         uses: ./.github/actions/deploy
         with:
           roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
-          bucketParamName: "LandingPageStack_Bucket"
+          bucketSsmParamName: "LandingPageStack_Bucket"
           distributionSsmParamName: "LandingPageStack_Distribution_ID"
 
       # - name: Sync to S3
