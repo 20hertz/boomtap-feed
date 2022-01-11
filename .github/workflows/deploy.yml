@@ -31,10 +31,13 @@ jobs:
       - name: Set bucket name variable
         run: echo "${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}"
         env:
-          bucket_name: "${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}"
+          bucket_name: ${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
+
+      - name: Print bucket name variable
+        run: echo ${{ env.bucket_name }}
 
       - name: Sync to S3
-        run: aws s3 sync ./dist s3://${{ env.bucket_name }}
+        run: aws s3 sync ./dist s3://${{fromJson(steps.bucket.outputs.BUCKET_NAME).parameter.value}}
         # run: aws s3 sync ./dist s3://${{ secrets.STAGING_BUCKET }}
 
       - name: Invalidate CloudFront distribution path
