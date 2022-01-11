@@ -1,0 +1,14 @@
+name: Deploy
+
+inputs:
+  roleArn:
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+  steps:
+    - uses: aws-actions/configure-aws-credentials@master
+      with:
+        role-to-assume: ${{ inputs.roleArn }}
+        aws-region: ca-central-1

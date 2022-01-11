@@ -1,6 +1,6 @@
 name: Continuous deployment
 
-on: workflow_call
+on: workflow_dispatch
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -17,10 +17,15 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Configure AWS credentials from Staging account
-        uses: aws-actions/configure-aws-credentials@master
+        uses: ./.github/actions/deploy
         with:
-          role-to-assume: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
-          aws-region: ca-central-1
+          roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
+
+      # - name: Configure AWS credentials from Staging account
+      #   uses: aws-actions/configure-aws-credentials@master
+      #   with:
+      #     role-to-assume: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
+      #     aws-region: ca-central-1
 
       # - name: Get host bucket name
       #   id: bucket
