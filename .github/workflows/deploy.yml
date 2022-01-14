@@ -4,7 +4,6 @@ on: workflow_dispatch
 
 jobs:
   deploy:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     permissions:
@@ -15,10 +14,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v2
 
-      - name: Configure AWS credentials from Staging account
+      - name: Deploy to staging
+        if: github.ref == 'refs/heads/staging'
         uses: 20hertz/static-site-actions@alpha
-        # uses: ./.github/actions/deploy
         with:
           roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
+          bucketSsmParamName: "LandingPageStack_Bucket"
+          distributionSsmParamName: "LandingPageStack_Distribution_ID"
+
+      - name: Deploy to prod
+        if: github.ref == 'refs/heads/main'
+        uses: 20hertz/static-site-actions@alpha
+        with:
+          roleArn: ${{ secrets.PROD_DEPLOYER_ROLE_ARN }}
           bucketSsmParamName: "LandingPageStack_Bucket"
           distributionSsmParamName: "LandingPageStack_Distribution_ID"
