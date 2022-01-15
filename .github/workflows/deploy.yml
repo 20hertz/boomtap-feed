@@ -49,6 +49,6 @@ jobs:
         env:
           ROLE_ARN: ${{ secrets.DEPLOYER_ROLE_ARN }}
         with:
-          roleArn: "$ROLE_ARN"
+          roleArn: $ROLE_ARN
           bucketSsmParamName: "LandingPageStack_Bucket"
           distributionSsmParamName: "LandingPageStack_Distribution_ID"
