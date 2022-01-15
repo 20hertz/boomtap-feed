@@ -29,3 +29,13 @@ jobs:
           roleArn: ${{ secrets.PROD_DEPLOYER_ROLE_ARN }}
           bucketSsmParamName: "LandingPageStack_Bucket"
           distributionSsmParamName: "LandingPageStack_Distribution_ID"
+
+  print:
+    name: Print deployer role ARN
+    runs-on: ubuntu-latest
+    environment: Staging
+    steps:
+      - name: Echo the encrypted secret
+        env:
+          ROLE_ARN: ${{ secrets.DEPLOYER_ROLE_ARN }}
+        run: echo "$ROLE_ARN"
