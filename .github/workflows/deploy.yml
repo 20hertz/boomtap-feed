@@ -34,6 +34,9 @@ jobs:
     name: Print deployer role ARN
     runs-on: ubuntu-latest
     environment: Staging
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Echo the encrypted secret
         env:
