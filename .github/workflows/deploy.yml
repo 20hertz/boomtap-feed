@@ -14,13 +14,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v2
 
-      # - name: Deploy to staging
-      #   if: github.ref == 'refs/heads/staging'
-      #   uses: 20hertz/static-site-actions@alpha
-      #   with:
-      #     roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
-      #     bucketSsmParamName: "LandingPageStack_Bucket"
-      #     distributionSsmParamName: "LandingPageStack_Distribution_ID"
+      - name: Deploy to staging
+        if: github.ref == 'refs/heads/staging'
+        uses: 20hertz/static-site-actions@alpha
+        with:
+          roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
+          bucketSsmParamName: "LandingPageStack_Bucket"
+          distributionSsmParamName: "LandingPageStack_Distribution_ID"
 
       - name: Deploy to prod
         if: github.ref == 'refs/heads/main'
