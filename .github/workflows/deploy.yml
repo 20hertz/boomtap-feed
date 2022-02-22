@@ -19,7 +19,12 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Execute development build
+        if: github.ref == 'refs/heads/staging'
+        run: yarn build NODE_ENV=development
+
       - name: Execute production build
+        if: github.ref == 'refs/heads/main'
         run: yarn build
 
       - uses: actions/upload-artifact@v2

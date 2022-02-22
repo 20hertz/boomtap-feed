@@ -47,17 +47,21 @@
                 accept-charset="UTF-8"
                 action="https://www.aweber.com/scripts/addlead.pl"
                 target="_blank"
-                id="af-form-1076426184"
+                id="af-form-<%= htmlWebpackPlugin.options.formId %>"
               >
                 <!-- AWeber Web Stuff -->
                 <div style="display: none">
                   <input
                     type="hidden"
                     name="meta_web_form_id"
-                    value="1076426184"
+                    value="<%= htmlWebpackPlugin.options.formId %>"
                   />
                   <input type="hidden" name="meta_split_id" value="" />
-                  <input type="hidden" name="listname" value="awlist6152856" />
+                  <input
+                    type="hidden"
+                    name="listname"
+                    value="awlist<%= htmlWebpackPlugin.options.listId %>"
+                  />
                   <input
                     type="hidden"
                     name="redirect"

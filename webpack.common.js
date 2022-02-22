@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 // We need Nodes fs module to read directory contents
 const fs = require("fs");
-const Dotenv = require("dotenv-webpack");
 
 function generateHtmlPlugins(templateDir) {
   const dirents = fs.readdirSync(path.resolve(__dirname, templateDir), {
@@ -26,6 +25,9 @@ function generateHtmlPlugins(templateDir) {
     return new HtmlWebpackPlugin({
       filename: `${name}.html`,
       template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
+      formId:
+        process.env.NODE_ENV === "production" ? "UPDATE_ME" : "1076426184",
+      listId: process.env.NODE_ENV === "production" ? "UPDATE_ME" : "6152856",
     });
   });
 }
@@ -44,7 +46,6 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: "./src/img", to: "img" }],
     }),
-    new Dotenv(),
   ].concat(htmlPlugins),
   output: {
     filename: "bundle.js",
