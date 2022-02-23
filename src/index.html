@@ -49,20 +49,20 @@
                 accept-charset="UTF-8"
                 action="https://www.aweber.com/scripts/addlead.pl"
                 target="_blank"
-                id="af-form-<%= htmlWebpackPlugin.options.formId %>"
+                id="af-form-<%= htmlWebpackPlugin.options.aweber_formId %>"
               >
                 <!-- AWeber Web Stuff -->
                 <div style="display: none">
                   <input
                     type="hidden"
                     name="meta_web_form_id"
-                    value="<%= htmlWebpackPlugin.options.formId %>"
+                    value="<%= htmlWebpackPlugin.options.aweber_formId %>"
                   />
                   <input type="hidden" name="meta_split_id" value="" />
                   <input
                     type="hidden"
                     name="listname"
-                    value="awlist<%= htmlWebpackPlugin.options.listId %>"
+                    value="awlist<%= htmlWebpackPlugin.options.aweber_listId %>"
                   />
                   <input
                     type="hidden"
@@ -74,7 +74,7 @@
                   <input
                     type="hidden"
                     name="meta_adtracking"
-                    value="Kits_Feed_Form_-_Staging"
+                    value="<%= htmlWebpackPlugin.options.aweber_formName %>"
                   />
                   <input type="hidden" name="meta_message" value="1" />
                   <input type="hidden" name="meta_required" value="email" />
@@ -82,15 +82,13 @@
                   <input type="hidden" name="meta_tooltip" value="" />
                 </div>
                 <!-- /AWeber Web Stuff -->
-                <label class="sr-only" for="awf_field-113641508">
-                  Email address
-                </label>
+                <label class="sr-only" for="awf_field"> Email address </label>
                 <input
-                  type="email"
-                  id="awf_field-113641508"
+                  id="awf_field"
                   name="email"
                   placeholder="Enter your email"
                   tabindex="500"
+                  type="email"
                 />
                 <button type="submit" tabindex="501">
                   <svg

@@ -25,9 +25,14 @@ function generateHtmlPlugins(templateDir) {
     return new HtmlWebpackPlugin({
       filename: `${name}.html`,
       template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
-      formId:
-        process.env.NODE_ENV === "production" ? "UPDATE_ME" : "1076426184",
-      listId: process.env.NODE_ENV === "production" ? "UPDATE_ME" : "6152856",
+      aweber_formId:
+        process.env.NODE_ENV === "production" ? "919304948" : "1076426184",
+      aweber_listId:
+        process.env.NODE_ENV === "production" ? "6222882" : "6152856",
+      aweber_formName:
+        process.env.NODE_ENV === "production"
+          ? "Kits_Feed_Form_-_Prod"
+          : "Kits_Feed_Form_-_Staging",
     });
   });
 }
