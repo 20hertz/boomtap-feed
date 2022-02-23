@@ -7,7 +7,8 @@ body {
   color: $clrBody;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   background: $clrDark;
   font-family: $fontPrimary;
@@ -40,7 +41,12 @@ h6 {
   font-size: $fontHeading6;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   font-family: $fontSecondary;
   font-weight: 700;
@@ -84,7 +90,7 @@ a:focus {
   border-radius: 0;
   background: transparent;
   transition-property: background-color, color, border-color;
-  transition-duration: .15s;
+  transition-duration: 0.15s;
   transition-timing-function: ease;
   @include mediumScreens {
     padding: 0.5rem 2rem;
@@ -177,7 +183,7 @@ header {
   position: absolute;
   z-index: 2019;
   width: 100%;
-  top: 0;
+  bottom: 0;
   left: 0;
 }
 
@@ -259,9 +265,8 @@ header {
 
 #s-hero-home {
   min-height: 100vh;
-  padding: 100px 0;
   @include mediumScreens {
-    padding: 160px 0;
+    padding: 40px 0;
   }
 }
 
@@ -309,7 +314,10 @@ header {
   }
 
   h1 span {
-    @include addTextGradient($fallback-color: $clrThird, $gradient-value: linear-gradient(to right, $clrSecondary, $clrThird));
+    @include addTextGradient(
+      $fallback-color: $clrThird,
+      $gradient-value: linear-gradient(to right, $clrSecondary, $clrThird)
+    );
   }
 
   p {
@@ -372,12 +380,13 @@ header {
   border-radius: 60px;
 
   input {
-    height: 56px;
-    flex: 1;
-    padding: 8px 24px;
     background: transparent;
-    color: $clrWhite;
     border: 0;
+    color: $clrWhite;
+    flex: 1;
+    height: 56px;
+    padding: 8px 24px;
+    width: 100%;
     @include mediumScreens {
       height: 64px;
       font-size: 18px;
@@ -402,7 +411,7 @@ header {
     color: $clrDark;
     border: 0;
     border-radius: 50%;
-    transition: background-color .2s ease, color .2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
     @include mediumScreens {
       width: 48px;
       height: 48px;
@@ -413,13 +422,3 @@ header {
     background: $clrThird;
   }
 }
-
-/*** Main End ***/
-
-/*** Footer Start ***/
-
-footer {
-  position: relative;
-}
-
-/*** Footer End ***/
