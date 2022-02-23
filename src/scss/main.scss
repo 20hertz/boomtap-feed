@@ -179,13 +179,13 @@ a:focus {
 
 /*** Header Start ***/
 
-header {
-  position: absolute;
-  z-index: 2019;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-}
+// header {
+//   position: absolute;
+//   z-index: 2019;
+//   width: 100%;
+//   bottom: 0;
+//   left: 0;
+// }
 
 .navbar,
 .navbar-expand-md {
@@ -421,13 +421,3 @@ header {
     background: $clrThird;
   }
 }
-
-/*** Main End ***/
-
-/*** Footer Start ***/
-
-footer {
-  position: relative;
-}
-
-/*** Footer End ***/

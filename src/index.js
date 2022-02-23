@@ -20,7 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.style.opacity = "1";
 
   const types = {
-    fadeInUp: [".s-content h1", ".s-content p", ".s-content .form-subscribe"],
+    fadeInUp: [
+      ".s-content h1",
+      ".s-content p",
+      ".s-content .form-subscribe, .privacyPolicy",
+    ],
     scaleIn: [],
     horizontalToLeft: [],
     horizontalToRight: [],
