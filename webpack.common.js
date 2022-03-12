@@ -23,6 +23,7 @@ function generateHtmlPlugins(templateDir) {
     const name = parts[0];
     const extension = parts[1];
     return new HtmlWebpackPlugin({
+      favicon: "./src/favicon.ico",
       filename: `${name}.html`,
       template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
       aweber_formId:
