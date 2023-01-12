@@ -49,7 +49,7 @@ jobs:
 
       - name: Deploy to staging
         if: github.ref == 'refs/heads/staging'
-        uses: 20hertz/static-site-actions@gamma
+        uses: 20hertz/static-site-actions@main
         with:
           roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
           bucketSsmParamName: "LandingPageStack_Bucket"
