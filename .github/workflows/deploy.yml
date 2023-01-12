@@ -53,6 +53,7 @@ jobs:
         with:
           roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
           bucketSsmParamName: "LandingPageStack_Bucket"
+          bucketPath: "/feed"
           distributionSsmParamName: "LandingPageStack_Distribution_ID"
 
       - name: Deploy to prod
