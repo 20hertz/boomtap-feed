@@ -52,9 +52,8 @@ jobs:
         uses: 20hertz/static-site-actions@main
         with:
           roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}
-          bucketSsmParamName: "WebAppStack_Bucket"
-          bucketPath: "/feed"
-          distributionSsmParamName: "WebAppStack_Distribution_ID"
+          bucketSsmParamName: "LandingPageStack_Bucket"
+          distributionSsmParamName: "LandingPageStack_Distribution_ID"
 
       - name: Deploy to prod
         if: github.ref == 'refs/heads/main'
