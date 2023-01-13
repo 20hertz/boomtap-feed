@@ -50,9 +50,11 @@ module.exports = {
       jQuery: "jquery",
     }),
     new CopyPlugin({
-      patterns: [{ from: "./src/img", to: "img" }],
-      // dummy directory for CI
-      patterns: [{ from: "./src/scss", to: "assets" }],
+      patterns: [
+        { from: "./src/img", to: "img" },
+        // dummy directory for CI
+        { from: "./src/scss", to: "assets" },
+      ],
     }),
   ].concat(htmlPlugins),
   output: {
