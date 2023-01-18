@@ -373,19 +373,11 @@ header {
 }
 
 .form-subscribe {
-  display: flex;
-  align-items: center;
-  padding-right: 8px;
-  border: 5px solid $clrWhite;
-  border-radius: 60px;
-
   input {
     background: transparent;
-    border: 0;
     color: $clrWhite;
     flex: 1;
     height: 56px;
-    padding: 8px 24px;
     width: 100%;
     @include mediumScreens {
       height: 64px;
@@ -403,22 +395,42 @@ header {
 
   button {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    justify-content: center;
     background: $clrPrimary;
     color: $clrDark;
     border: 0;
-    border-radius: 50%;
+    border-radius: 60px;
     transition: background-color 0.2s ease, color 0.2s ease;
+    padding: 12px 24px;
+    height: 56px;
     @include mediumScreens {
-      width: 48px;
+      // width: 48px;
       height: 48px;
     }
   }
 
   button:hover {
     background: $clrThird;
+  }
+}
+
+.formGrid {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.input {
+  border: 5px solid $clrWhite;
+  border-radius: 60px;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 12px 24px;
+}
+
+.button {
+  @include smallScreensMax {
+    width: 100%;
   }
 }
