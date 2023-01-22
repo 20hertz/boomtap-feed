@@ -313,13 +313,6 @@ header {
     }
   }
 
-  h1 span {
-    @include addTextGradient(
-      $fallback-color: $clrThird,
-      $gradient-value: linear-gradient(to right, $clrSecondary, $clrThird)
-    );
-  }
-
   p {
     margin-bottom: 48px;
     font-size: 16px;
@@ -438,4 +431,16 @@ header {
   @include smallScreensMax {
     width: 100%;
   }
+}
+
+/*** Utils ***/
+.mb {
+  margin-bottom: 1.5rem;
+}
+
+.special-gradient {
+  @include addTextGradient(
+    $fallback-color: $clrThird,
+    $gradient-value: linear-gradient(to right, $clrSecondary, $clrThird)
+  );
 }
