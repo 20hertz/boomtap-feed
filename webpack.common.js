@@ -35,8 +35,7 @@ const generateHtmlPlugins = (templateDir) => () => {
 // We will call the function like this:
 const htmlPlugins = generateHtmlPlugins("./src");
 
-module.exports = (mode) => ({
-  mode,
+module.exports = () => ({
   entry: "./src/index.js",
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),

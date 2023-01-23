@@ -2,9 +2,9 @@
   "name": "project",
   "version": "1.0.0",
   "scripts": {
-    "dev": "NODE_ENV=development webpack --watch",
-    "build": "webpack",
-    "start": "NODE_ENV=development webpack-dev-server --open"
+    "dev": "NODE_ENV=development webpack --watch --mode development",
+    "build": "webpack --mode production",
+    "start": "NODE_ENV=development webpack-dev-server --open --mode development"
   },
   "license": "ISC",
   "dependencies": {
