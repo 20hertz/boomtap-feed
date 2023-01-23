@@ -1,72 +1,68 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
-const path = require('path');
+const path = require("path");
 
-module.exports = merge(common, {
-    mode: 'development',
-    devtool: 'inline-source-map',
-    devServer: {
-        static: path.join(__dirname, 'dist'),
-        compress: true,
-        port: 9000
-    },
-    output: {
-        pathinfo: false,
-    },
-    optimization: {
-        removeAvailableModules: false,
-        removeEmptyChunks: false,
-        splitChunks: false,
-    },
-    module: {
-        rules: [
-            {
-                test: /\.s?[ac]ss$/,
-                use: [
-                    {
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    },
-                ]
+module.exports = {
+  devtool: "inline-source-map",
+  devServer: {
+    static: path.join(__dirname, "dist"),
+    compress: true,
+    port: 9000,
+  },
+  output: {
+    pathinfo: false,
+  },
+  optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: false,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.s?[ac]ss$/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
             },
-            {
-                test: /\.(png|jpe?g|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            publicPath: 'img/',
-                            outputPath: 'img/',
-                            esModule: false
-                        },
-                    },
-
-                ],
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
             },
-            {
-                test: /\.(ttf|eot|woff|woff2|svg)$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        publicPath: 'fonts/',
-                        outputPath: 'fonts/',
-                        esModule: false
-                    },
-                },
-            },
+          },
         ],
-    },
-});
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              publicPath: "img/",
+              outputPath: "img/",
+              esModule: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2|svg)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]",
+            publicPath: "fonts/",
+            outputPath: "fonts/",
+            esModule: false,
+          },
+        },
+      },
+    ],
+  },
+};

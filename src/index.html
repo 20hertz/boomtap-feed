@@ -53,32 +53,32 @@
                 accept-charset="UTF-8"
                 action="https://www.aweber.com/scripts/addlead.pl"
                 target="_blank"
-                id="af-form-<%= htmlWebpackPlugin.options.aweber_formId %>"
+                id="af-form-<%= htmlWebpackPlugin.options.aweber_form_id %>"
               >
                 <!-- AWeber Web Stuff -->
                 <div style="display: none">
                   <input
                     type="hidden"
                     name="meta_web_form_id"
-                    value="<%= htmlWebpackPlugin.options.aweber_formId %>"
+                    value="<%= htmlWebpackPlugin.options.aweber_form_id %>"
                   />
                   <input type="hidden" name="meta_split_id" value="" />
                   <input
                     type="hidden"
                     name="listname"
-                    value="awlist<%= htmlWebpackPlugin.options.aweber_listId %>"
+                    value="awlist<%= htmlWebpackPlugin.options.aweber_list_id %>"
                   />
                   <input
                     type="hidden"
                     name="redirect"
-                    value="https://feed.backstage.boomtap.io/thank-you.html"
+                    value="<%= htmlWebpackPlugin.options.aweber_redirect_url %>"
                     id="redirect_dd1ab1fb6ffe7a1eeca1e4c4acb99b83"
                   />
 
                   <input
                     type="hidden"
                     name="meta_adtracking"
-                    value="<%= htmlWebpackPlugin.options.aweber_formName %>"
+                    value="<%= htmlWebpackPlugin.options.aweber_form_name %>"
                   />
                   <input type="hidden" name="meta_message" value="1" />
                   <input type="hidden" name="meta_required" value="email" />

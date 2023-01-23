@@ -20,7 +20,7 @@ jobs:
         run: yarn install
 
       - name: Execute development build
-        if: github.ref == 'refs/heads/staging'
+        if: github.ref == 'refs/heads/develop'
         run: yarn build
 
       - name: Execute production build
@@ -48,7 +48,7 @@ jobs:
           path: dist
 
       - name: Deploy to staging
-        if: github.ref == 'refs/heads/staging'
+        if: github.ref == 'refs/heads/develop'
         uses: 20hertz/static-site-actions@main
         with:
           roleArn: ${{ secrets.STAGING_DEPLOYER_ROLE_ARN }}

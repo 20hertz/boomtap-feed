@@ -6,7 +6,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 // We need Nodes fs module to read directory contents
 const fs = require("fs");
 
-function generateHtmlPlugins(templateDir) {
+const generateHtmlPlugins = (templateDir) => (mode) => {
   const dirents = fs.readdirSync(path.resolve(__dirname, templateDir), {
     withFileTypes: true,
   });
@@ -26,22 +26,16 @@ function generateHtmlPlugins(templateDir) {
       favicon: "./src/favicon.ico",
       filename: `${name}.html`,
       template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
-      aweber_formId:
-        process.env.NODE_ENV === "production" ? "919304948" : "1076426184",
-      aweber_listId:
-        process.env.NODE_ENV === "production" ? "6222882" : "6152856",
-      aweber_formName:
-        process.env.NODE_ENV === "production"
-          ? "Kits_Feed_Form_-_Prod"
-          : "Kits_Feed_Form_-_Staging",
+      ...getAweberConfigs(mode),
     });
   });
-}
+};
 
 // We will call the function like this:
 const htmlPlugins = generateHtmlPlugins("./src");
 
-module.exports = {
+module.exports = (mode) => ({
+  mode,
   entry: "./src/index.js",
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
@@ -56,9 +50,38 @@ module.exports = {
         { from: "./src/scss", to: "assets" },
       ],
     }),
-  ].concat(htmlPlugins),
+  ].concat(htmlPlugins(mode)),
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
+  },
+});
+
+function getAweberConfigs(mode) {
+  return Object.entries(aweberConfigs).reduce(
+    (configs, [key, object]) => ({
+      ...configs,
+      [key]: object[mode],
+    }),
+    {}
+  );
+}
+
+const aweberConfigs = {
+  aweber_form_id: {
+    production: "919304948",
+    development: "1076426184",
+  },
+  aweber_list_id: {
+    production: "6222882",
+    development: "6152856",
+  },
+  aweber_form_name: {
+    production: "Kits_Feed_Form_-_Prod",
+    development: "Kits_Feed_Form_-_Staging",
+  },
+  aweber_redirect_url: {
+    production: "https://feed.boomtap.io/thank-you.html",
+    development: "https://feed.backstage.boomtap.io/thank-you.html",
   },
 };
