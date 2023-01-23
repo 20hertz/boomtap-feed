@@ -21,7 +21,7 @@ jobs:
 
       - name: Execute development build
         if: github.ref == 'refs/heads/develop'
-        run: yarn build
+        run: NODE_ENV=development yarn build
 
       - name: Execute production build
         if: github.ref == 'refs/heads/main'

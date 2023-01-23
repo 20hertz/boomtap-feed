@@ -5,8 +5,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 // We need Nodes fs module to read directory contents
 const fs = require("fs");
+const node_env = process.env.NODE_ENV;
 
-const generateHtmlPlugins = (templateDir) => (mode) => {
+const generateHtmlPlugins = (templateDir) => () => {
   const dirents = fs.readdirSync(path.resolve(__dirname, templateDir), {
     withFileTypes: true,
   });
@@ -26,7 +27,7 @@ const generateHtmlPlugins = (templateDir) => (mode) => {
       favicon: "./src/favicon.ico",
       filename: `${name}.html`,
       template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
-      ...getAweberConfigs(mode),
+      ...getAweberConfigs(node_env),
     });
   });
 };
@@ -50,7 +51,7 @@ module.exports = (mode) => ({
         { from: "./src/scss", to: "assets" },
       ],
     }),
-  ].concat(htmlPlugins(mode)),
+  ].concat(htmlPlugins()),
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
