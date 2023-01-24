@@ -33,7 +33,7 @@ const generateHtmlPlugins = (templateDir) => () => {
 };
 
 // We will call the function like this:
-const htmlPlugins = generateHtmlPlugins("./src");
+const htmlPlugins = generateHtmlPlugins("../src");
 
 module.exports = () => ({
   entry: "./src/index.js",
@@ -81,7 +81,7 @@ const aweberConfigs = {
     development: "Kits_Feed_Form_-_Staging",
   },
   aweber_redirect_url: {
-    production: "https://feed.boomtap.io/thank-you.html",
-    development: "https://feed.backstage.boomtap.io/thank-you.html",
+    production: "https://feed.boomtap.io/almost-done.html",
+    development: "https://feed.backstage.boomtap.io/almost-done.html",
   },
 };
