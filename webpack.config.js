@@ -1,8 +1,7 @@
 const { merge } = require("webpack-merge");
-const commonConfig = require("./webpack.common.js");
-const developmentConfig = require("./webpack.dev.js");
-const productionConfig = require("./webpack.prod.js");
-const node_env = process.env.NODE_ENV;
+const commonConfig = require("./bundler/webpack.common.js");
+const developmentConfig = require("./bundler/webpack.dev.js");
+const productionConfig = require("./bundler/webpack.prod.js");
 
 module.exports = (_, argv) => {
   switch (argv.mode) {

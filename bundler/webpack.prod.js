@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PurgecssPlugin = require("purgecss-webpack-plugin");
 
 const PATHS = {
-  src: path.join(__dirname, "src"),
+  src: path.join(__dirname, "..", "src"),
 };
 
 function collectSafelist() {

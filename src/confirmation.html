@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      name="viewport"
+    />
+    <meta
+      content="Best Virtual Sampler Tool for Music Creators"
+      name="description"
+    />
+    <meta content="Boomtap" name="author" />
+
+    <title>Boomtap Feed</title>
+    <meta
+      name="description"
+      content="Curated drumkits and SFX every month in your mailbox. "
+    />
+    <script type="text/javascript">
+      var formData = (function () {
+        var query_string = location.search
+          ? location.search.indexOf("#") != -1
+            ? location.search.substring(1, location.search.indexOf("#"))
+            : location.search.substring(1)
+          : "";
+        var elements = [];
+        if (query_string) {
+          var pairs = query_string.split("&");
+          for (i in pairs) {
+            if (typeof pairs[i] == "string") {
+              var tmp = pairs[i].split("=");
+              var queryKey = unescape(tmp[0]);
+              queryKey =
+                queryKey.charAt(0) == "c"
+                  ? queryKey.replace(/\s/g, "_")
+                  : queryKey;
+              elements[queryKey] = unescape(tmp[1]);
+            }
+          }
+        }
+        return {
+          display: function (key) {
+            if (elements[key]) {
+              document.write(elements[key]);
+            } else {
+              document.write(
+                "<!--If desired, replace everything between these quotes with a default in case there is no data in the query string.-->"
+              );
+            }
+          },
+        };
+      })();
+    </script>
+  </head>
+  <body>
+    <main id="page-wrapper">
+      <section id="s-hero-home" class="section-hero">
+        <div class="s-background">
+          <img
+            srcset="
+              img/bg-hero@mobile.png  375w,
+              img/bg-hero@1x.png     1440w,
+              img/bg-hero@2x.png     2880w
+            "
+            sizes="(max-width: 767px) 375px, 1440px 2880px"
+            width="1440"
+            height="1092"
+            src="img/bg-hero@2x.png"
+            alt="Boomtap"
+          />
+        </div>
+        <div class="container">
+          <div class="s-slide">
+            <div class="s-content">
+              <h2 class="special-gradient mb">
+                Thanks&nbsp;
+                <script type="text/javascript">
+                  formData.display("name");
+                </script>
+                !
+              </h2>
+              <p>Your subscription has been confirmed.</p>
+            </div>
+            <div class="s-media">
+              <img
+                srcset="
+                  img/sampler@mobile.png  375w,
+                  img/sampler@1x.png      662w,
+                  img/sampler@2x.png     1324w
+                "
+                sizes="(max-width: 767px) 375px, 662px 1324px"
+                width="662"
+                height="510"
+                src="img/sampler@2x.png"
+                alt="Best Virtual Sampler Tool for Music Creators"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
