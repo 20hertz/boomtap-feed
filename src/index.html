@@ -47,28 +47,32 @@
                 accept-charset="UTF-8"
                 action="https://www.aweber.com/scripts/addlead.pl"
                 target="_blank"
-                id="af-form-919304948"
+                id="af-form-<%= aweberFormId %>"
               >
                 <!-- AWeber Web Stuff -->
                 <div style="display: none">
                   <input
                     type="hidden"
                     name="meta_web_form_id"
-                    value="919304948"
+                    value="<%= aweberFormId %>"
                   />
                   <input type="hidden" name="meta_split_id" value="" />
-                  <input type="hidden" name="listname" value="awlist6222882" />
+                  <input
+                    type="hidden"
+                    name="listname"
+                    value="<%= aweberListId %>"
+                  />
                   <input
                     type="hidden"
                     name="redirect"
-                    value="https://feed.boomtap.app/almost-done.html"
+                    value="<%= aweberRedirectUrl %>"
                     id="redirect_dd1ab1fb6ffe7a1eeca1e4c4acb99b83"
                   />
 
                   <input
                     type="hidden"
                     name="meta_adtracking"
-                    value="Kits_Feed_Form_-_Prod"
+                    value="<%= aweberFormName %>"
                   />
                   <input type="hidden" name="meta_message" value="1" />
                   <input type="hidden" name="meta_required" value="email" />
