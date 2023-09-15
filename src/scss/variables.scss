@@ -1,3 +1,5 @@
+@use "sass:math";
+
 //GENERAL
 $gutter: 20px;
 
@@ -11,9 +13,9 @@ $fontBaseLineHeight: 1.625;
 $clrBlack: #000000;
 $clrWhite: #ffffff;
 
-$clrPrimary: #F7D445;
-$clrSecondary: #B078C2;
-$clrThird: #F3AEBE;
+$clrPrimary: #f7d445;
+$clrSecondary: #b078c2;
+$clrThird: #f3aebe;
 $clrGray: #cfd2d3;
 $clrDark: #050026;
 $clrBody: #ffffff;
@@ -21,11 +23,11 @@ $bgBody: #ffffff;
 
 //HEADING SIZING
 $fontHeading1: 5rem;
-$fontHeading2: $fontHeading1 - ($fontHeading1 * 20 / 100);
-$fontHeading3: $fontHeading2 - ($fontHeading2 * 20 / 100);
-$fontHeading4: $fontHeading3 - ($fontHeading3 * 20 / 100);
-$fontHeading5: $fontHeading4 - ($fontHeading4 * 25 / 100);
-$fontHeading6: $fontHeading5 - ($fontHeading5 * 25 / 100);
+$fontHeading2: $fontHeading1 - math.div($fontHeading1 * 20, 100);
+$fontHeading3: $fontHeading2 - math.div($fontHeading2 * 20, 100);
+$fontHeading4: $fontHeading3 - math.div($fontHeading3 * 20, 100);
+$fontHeading5: $fontHeading4 - math.div($fontHeading4 * 25, 100);
+$fontHeading6: $fontHeading5 - math.div($fontHeading5 * 25, 100);
 
 //MEDIA QUERIES
 $smallScreenWidth: 500px;
