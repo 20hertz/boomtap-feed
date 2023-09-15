@@ -18,3 +18,5 @@ dist
 *.sln
 *.sw?
 .vercel
+
+.env*
