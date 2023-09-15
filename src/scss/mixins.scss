@@ -1,34 +1,33 @@
-//MIXINS//
+// @mixin flexBasisCol($col) {
+//   flex: 0 0 calc(100% / #{$col});
+//   max-width: calc(100% / #{$col});
+// }
 
-@mixin flexBasisCol($col) {
-  flex: 0 0 calc(100% / #{$col});
-  max-width: calc(100% / #{$col});
-}
+// @mixin flexBasisPerc($percentage) {
+//   flex: 0 0 $percentage;
+//   max-width: $percentage;
+// }
 
-@mixin flexBasisPerc($percentage) {
-  flex: 0 0 $percentage;
-  max-width: $percentage;
-}
+// @mixin flexBasisCol($col) {
+//   flex: 0 0 calc(100% / #{$col});
+// }
 
-@mixin flexBasisCol($col) {
-  flex: 0 0 calc(100% / #{$col});
-}
+// @mixin svgBackground($desiredWidth, $originalWidth, $originalHeight) {
+//   width: $desiredWidth;
+//   height: calc(#{$desiredWidth} * #{$originalHeight} / #{$originalWidth});
+//   background-repeat: no-repeat;
+//   background-position: center center;
+//   background-size: $desiredWidth
+//     calc(#{$desiredWidth} * #{$originalHeight} / #{$originalWidth});
+// }
 
-@mixin svgBackground($desiredWidth, $originalWidth, $originalHeight) {
-  width: $desiredWidth;
-  height: calc(#{$desiredWidth} * #{$originalHeight} / #{$originalWidth});
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: $desiredWidth calc(#{$desiredWidth} * #{$originalHeight} / #{$originalWidth});
-}
+// @mixin adjustedHeight($desiredWidth, $originalWidth, $originalHeight) {
+//   height: calc(#{$desiredWidth} * #{$originalHeight} / #{$originalWidth});
+// }
 
-@mixin adjustedHeight($desiredWidth, $originalWidth, $originalHeight) {
-  height: calc(#{$desiredWidth} * #{$originalHeight} / #{$originalWidth});
-}
-
-@mixin adjustedWidth($desiredHeight, $originalHeight, $originalHeight) {
-  width: calc(#{$desiredHeight} * #{$originalHeight} / #{$originalHeight});
-}
+// @mixin adjustedWidth($desiredHeight, $originalHeight, $originalHeight) {
+//   width: calc(#{$desiredHeight} * #{$originalHeight} / #{$originalHeight});
+// }
 
 @mixin boxedContainer($width) {
   max-width: $width;
@@ -50,7 +49,10 @@
     & {
       font-size: $min-font-size;
       @media screen and (min-width: $min-vw) {
-        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+        font-size: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+        );
       }
       @media screen and (min-width: $max-vw) {
         font-size: $max-font-size;
@@ -64,7 +66,8 @@
   color: $fallback-color;
 
   // if properties doesn't support - ignore them
-  @supports (-webkit-background-clip: text) and (-webkit-text-fill-color: transparent) {
+  @supports (-webkit-background-clip: text) and
+    (-webkit-text-fill-color: transparent) {
     //add background gradient
     background-image: $gradient-value;
 
@@ -78,17 +81,17 @@
 
 // Media queries (mobile first):
 
-@mixin customScreens($value) {
-  @media (min-width: $value) {
-    @content;
-  }
-}
+// @mixin customScreens($value) {
+//   @media (min-width: $value) {
+//     @content;
+//   }
+// }
 
-@mixin smallScreens() {
-  @media (min-width: $smallScreenWidth) {
-    @content;
-  }
-}
+// @mixin smallScreens() {
+//   @media (min-width: $smallScreenWidth) {
+//     @content;
+//   }
+// }
 
 @mixin mediumScreens() {
   @media (min-width: $mediumScreenWidth) {
@@ -102,52 +105,52 @@
   }
 }
 
-@mixin extraLargeScreens() {
-  @media (min-width: $extraLargeScreenWidth) {
-    @content;
-  }
-}
+// @mixin extraLargeScreens() {
+//   @media (min-width: $extraLargeScreenWidth) {
+//     @content;
+//   }
+// }
 
-// The media queries below should only be used in very specific cases where you ONLY want to apply styles on certain screen sizes.
-// You should use the mobile first media queries above whenever possible.
-@mixin mediumScreensOnly() {
-  @media (min-width: $mediumScreenWidth) and (max-width: $largeScreenWidth - 1px) {
-    @content;
-  }
-}
+// // The media queries below should only be used in very specific cases where you ONLY want to apply styles on certain screen sizes.
+// // You should use the mobile first media queries above whenever possible.
+// @mixin mediumScreensOnly() {
+//   @media (min-width: $mediumScreenWidth) and (max-width: $largeScreenWidth - 1px) {
+//     @content;
+//   }
+// }
 
-@mixin extraSmallScreensMax() {
-  @media (max-width: $smallScreenWidth - 1px) {
-    @content;
-  }
-}
+// @mixin extraSmallScreensMax() {
+//   @media (max-width: $smallScreenWidth - 1px) {
+//     @content;
+//   }
+// }
 
-@mixin smallScreensMax() {
-  @media (max-width: $mediumScreenWidth - 1px) {
-    @content;
-  }
-}
+// @mixin smallScreensMax() {
+//   @media (max-width: $mediumScreenWidth - 1px) {
+//     @content;
+//   }
+// }
 
-@mixin mediumScreensMax() {
-  @media (max-width: $largeScreenWidth - 1px) {
-    @content;
-  }
-}
+// @mixin mediumScreensMax() {
+//   @media (max-width: $largeScreenWidth - 1px) {
+//     @content;
+//   }
+// }
 
-@mixin largeScreensMax() {
-  @media (max-width: $extraLargeScreenWidth - 1px) {
-    @content;
-  }
-}
+// @mixin largeScreensMax() {
+//   @media (max-width: $extraLargeScreenWidth - 1px) {
+//     @content;
+//   }
+// }
 
-@mixin smallMediumScreens() {
-  @media (min-width: 920px) {
-    @content;
-  }
-}
+// @mixin smallMediumScreens() {
+//   @media (min-width: 920px) {
+//     @content;
+//   }
+// }
 
-@mixin smallMediumScreensMax() {
-  @media (max-width: 919px) {
-    @content;
-  }
-}
+// @mixin smallMediumScreensMax() {
+//   @media (max-width: 919px) {
+//     @content;
+//   }
+// }
