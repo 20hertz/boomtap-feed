@@ -1,9 +1,3 @@
 {
-  "redirects": [
-    {
-      "source": "/almost-done",
-      "destination": "/almost-done.html",
-      "permanent": false
-    }
-  ]
+  "cleanUrls": true
 }
