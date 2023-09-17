@@ -130,11 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return !pattern.test(userAgent);
     }
 
-    if (
-      !browserSupportsNewWindows(
-        navigator.userAgent || navigator.vendor || window.opera
-      )
-    ) {
+    if (!browserSupportsNewWindows(navigator.userAgent || window.opera)) {
       document.getElementById("af-form-1076426184").removeAttribute("target");
     }
   })();
