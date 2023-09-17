@@ -3,12 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      content="Best Virtual Sampler Tool for Music Creators"
-      name="description"
-    />
-    <title>Boomtap Feed</title>
     <meta name="description" content="Free curated sound kits" />
+    <title>Boomtap Feed</title>
     <link rel="shortcut icon" href="/favicon.icon" />
     <link rel="stylesheet" href="./scss/app.scss" />
   </head>
@@ -47,32 +43,32 @@
                 accept-charset="UTF-8"
                 action="https://www.aweber.com/scripts/addlead.pl"
                 target="_blank"
-                id="af-form-<%= aweberFormId %>"
+                id="af-form-%VITE_AWEBER_FORM_ID%"
               >
                 <!-- AWeber Web Stuff -->
                 <div style="display: none">
                   <input
                     type="hidden"
                     name="meta_web_form_id"
-                    value="<%= aweberFormId %>"
+                    value="%VITE_AWEBER_FORM_ID%"
                   />
                   <input type="hidden" name="meta_split_id" value="" />
                   <input
                     type="hidden"
                     name="listname"
-                    value="<%= aweberListId %>"
+                    value="%VITE_AWEBER_LIST_ID%"
                   />
                   <input
                     type="hidden"
                     name="redirect"
-                    value="<%= aweberRedirectUrl %>"
+                    value="%VITE_AWEBER_REDIRECT_URL%"
                     id="redirect_dd1ab1fb6ffe7a1eeca1e4c4acb99b83"
                   />
 
                   <input
                     type="hidden"
                     name="meta_adtracking"
-                    value="<%= aweberFormName %>"
+                    value="%VITE_AWEBER_FORM_NAME%"
                   />
                   <input type="hidden" name="meta_message" value="1" />
                   <input type="hidden" name="meta_required" value="email" />

@@ -1,31 +1,22 @@
-import { loadEnv } from "vite";
-import path from "path";
-import { createHtmlPlugin } from "vite-plugin-html";
+import { defineConfig } from "vite";
+import { resolve } from "path";
 
-export default ({ mode }) => {
-  const env = loadEnv(mode, process.cwd());
-  return {
-    root: "src",
-    build: {
-      outDir: "../dist",
-    },
-    resolve: {
-      alias: {
-        "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
+export default defineConfig({
+  root: "src",
+  envDir: "../",
+  build: {
+    outDir: "../dist",
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "src/index.html"),
+        almostDone: resolve(__dirname, "src/almost-done.html"),
+        confirmation: resolve(__dirname, "src/confirmation.html"),
       },
     },
-    plugins: [
-      createHtmlPlugin({
-        minify: true,
-        inject: {
-          data: {
-            aweberFormId: env.VITE_AWEBER_FORM_ID,
-            aweberFormName: env.VITE_AWEBER_FORM_NAME,
-            aweberListId: env.VITE_AWEBER_LIST_ID,
-            aweberRedirectUrl: env.VITE_AWEBER_REDIRECT_URL,
-          },
-        },
-      }),
-    ],
-  };
-};
+  },
+  resolve: {
+    alias: {
+      "~bootstrap": resolve(__dirname, "node_modules/bootstrap"),
+    },
+  },
+});
